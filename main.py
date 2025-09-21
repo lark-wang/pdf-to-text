@@ -5,7 +5,6 @@ import numpy as np
 import cv2
 from pdf2image import convert_from_bytes
 from fastapi.middleware.cors import CORSMiddleware
-from PIL import Image
 import io
 
 app = FastAPI()
@@ -21,7 +20,7 @@ app.add_middleware(
 async def upload_file(file: UploadFile = File(...)):
 
     contents = await file.read()
-    pages = convert_from_bytes(contents, dpi=300)
+    pages = convert_from_bytes(contents, dpi=200)
 
     text_str = ""
 
