@@ -31,13 +31,14 @@ async def upload_file(file: UploadFile = File(...)):
         
         h, w, _ = rotated.shape
         mid_x = w // 2
-        width = 300  
+        width = 250  
 
         left_page  = rotated[:, :mid_x + width]
         right_page = rotated[:, mid_x + width:]
 
-        text_left  = pytesseract.image_to_string(left_page, lang="eng")
-        text_right = pytesseract.image_to_string(right_page, lang="eng")
+        config = "--oem 3 --psm 1"
+        text_left  = pytesseract.image_to_string(left_page, lang="eng", config=config)
+        text_right = pytesseract.image_to_string(right_page, lang="eng", config=config)
 
         text_str += text_left + "\n" + text_right + "\n"
         
