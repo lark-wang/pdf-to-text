@@ -41,9 +41,5 @@ async def upload_file(file: UploadFile = File(...)):
         text_right = pytesseract.image_to_string(right_page, lang="eng", config=config)
 
         text_str += text_left + "\n" + text_right + "\n"
-        
-    print("=== OCR OUTPUT START ===")
-    print(repr(text_str))  
-    print("=== OCR OUTPUT END ===")
 
     return JSONResponse({"text": text_str})
