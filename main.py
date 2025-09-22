@@ -36,7 +36,7 @@ async def upload_file(file: UploadFile = File(...)):
         left_page  = rotated[:, :mid_x + width]
         right_page = rotated[:, mid_x + width:]
 
-        config = "--oem 3 --psm 1"
+        config = "--oem 3 --psm 6"
         text_left  = pytesseract.image_to_string(left_page, lang="eng", config=config)
         text_right = pytesseract.image_to_string(right_page, lang="eng", config=config)
 
